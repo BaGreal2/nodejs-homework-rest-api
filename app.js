@@ -2,6 +2,8 @@ const express = require('express')
 const volleyball = require('volleyball')
 const logger = require('morgan')
 const cors = require('cors')
+const mongoose = require('mongoose')
+require('dotenv').config()
 // const path = require('path')
 
 const contacts = require('./routes/api/contacts')
@@ -11,6 +13,11 @@ app.use(volleyball)
 app.use(cors({
   origin: '*'
 }))
+
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log('Database connection successfully'))
+  .catch((error) => console.log(error))
 
 app.use(express.json())
 
