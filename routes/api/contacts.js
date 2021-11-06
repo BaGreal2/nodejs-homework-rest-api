@@ -64,11 +64,12 @@ router.put('/:contactId', async (req, res) => {
   }
 })
 
-router.patch('/:contactId', async (req, res) => {
+router.patch('/:contactId/favorite', async (req, res) => {
   try {
-    const targetContact = await updateStatusContact(req.params.contactId, req.body)
-
-    res.json(targetContact)
+    if (req.body.favorite) {
+      const targetContact = await updateStatusContact(req.params.contactId, req.body)
+      res.json(targetContact)
+    }
   } catch (error) {
     console.log(error)
     res.status(500).send(error)

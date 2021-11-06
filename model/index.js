@@ -75,9 +75,6 @@ const updateStatusContact = async (contactId, body) => {
   const targetContact = await Contact.findById(contactId)
   if (targetContact) {
     const updatedContact = await Contact.findByIdAndUpdate(contactId, body, { new: true, })
-    if (!updateContact.favorite) {
-      updateContact.favorite = false
-    }
     return {
       status: 'success',
       code: 200,
