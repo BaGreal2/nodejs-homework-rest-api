@@ -69,6 +69,8 @@ router.patch('/:contactId/favorite', async (req, res) => {
     if (req.body.favorite) {
       const targetContact = await updateStatusContact(req.params.contactId, req.body)
       res.json(targetContact)
+    } else {
+      res.status(400).send('Field "favorite" is required')
     }
   } catch (error) {
     console.log(error)
