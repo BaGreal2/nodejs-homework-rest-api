@@ -7,6 +7,7 @@ require('dotenv').config()
 // const path = require('path')
 
 const contacts = require('./routes/api/contacts')
+const users = require('./routes/api/users')
 
 const app = express()
 app.use(volleyball)
@@ -27,6 +28,7 @@ app.use(logger(formatsLogger))
 app.use(cors())
 
 app.use('/api/contacts', contacts)
+app.use('/api/users', users)
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
